@@ -21,16 +21,22 @@ Nagrania wczytałem z częstotliwością próbkowania 16 kHz (mono). Spektrogram
 
 **Samogłoska ("a"):**
 Samogłoska ("a"): Przy zwykłych ustawieniach na wykresie widać było równe i poziome paski. Kiedy zmieniłem n_fft na 256 i hop na 300, paski zlały się w grube, rozmyte linie, a cały obraz zrobił się kanciasty i "rozpikselowany" wzdłuż osi czasu.
+
 ![alt text](samogloska_domyslne-1.png)
 ![alt text](samogloska_zmienione-1.png)
+
 **Wyraz:**
 Wyraz: Falujące paski (formanty) i ciemne pionowe przerwy oznaczające krótkie zwarcia spółgłosek. Kiedy zmieniłem ustawienia na: n_fft=128 i hop=100, paski częstotliwości zupełnie zniknęły, ale za to dokładnie było widać, kiedy kończy się i zaczyna każdy dźwięk. Sama oś czasu stała się za to gładsza.
+
 ![alt text](wyraz_domyslne-1.png)
 ![alt text](wyraz_zmienione-1.png)
+
 **Zdanie:**
 Zapis całego zdania był pełny szumów i szybkich zmian. Zmiana ustawień na n_fft=1024 i hop=500 sprawiła, że paski częstotliwości były bardzo dokładne, ale obraz stał się kanciasty w czasie, że trudno było cokolwiek z niego na oko odczytać.
+
 ![alt text](zdanie_domyslne-1.png)
 ![alt text](zdanie_zmienione-1.png)
+
 ## 4. Analiza i interpretacja
 
 Samogłoska (zmiana na :n_fft=256, hop=300): Zmniejszenie okna (n_fft) sprawilo, że poziome paski częstotliwości stały się zamazane i niewyraźne. Z kolei bardzo duży krok przesuwania (hop) spowodował, że program rzadziej "robił zdjęcia" dźwiękowi, przez co cały wykres stal się kanciasty i "rozpikselowany" w poziomie.
