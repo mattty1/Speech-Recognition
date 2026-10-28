@@ -65,14 +65,37 @@ Eksperyment B: Zbyt krótkie okno uniemożliwi rozpoznanie fazy, jednak dla bard
 | RNN, OKNO=120 | 1153 | 0.00400 ± 0.00001 | 9.97s |
 | LSTM, OKNO=120 | 4513 | 0.00375 ± 0.00013 | 16.49s |
 | GRU, OKNO=120 | 3393 | 0.00344 ± 0.00019 | 26.83s |
+
+![alt text](ekspA.png)
+
+![alt text](ekspB.png)
+
+![alt text](ekspC.png)
+
+![alt text](krzywe.png)
+
+![alt text](predykcje.png)
 ## 4. Analiza i interpretacja
 
-- Co wyniki oznaczają, przypadki błędne, ograniczenia.
+**W eksperymencie A:** zauważono, że zwiększanie liczby jednostek z 8 do 32 przyniosło poprawę, jednak przy 64 jednostkach wynik przestał się znacząco polepszać, a model potrzebował więcej czasu na obliczenia z powodu drastycznego wzrostu liczby parametrów (z 273 na prawie 13 tysięcy).
+
+**W eksperymencie B:** długość okna 30 i 60 sprawdzała się najlepiej, ponieważ pozwalała sieci "zobaczyć" odpowiedni fragment fali (okres głównej sinusoidy to ok. 126 próbek). Okno 10 to za mało kontekstu, by odczytać trend, natomiast okno 120 dla RNN powoduje niestabilność na skutek długiego łańcucha BPTT.
+
+**W eksperymencie C:**, dla krótkiego okna (10) różnice między RNN a bramkowanymi komórkami LSTM i GRU były niewielkie. Jednak przy oknie 120 zwykły model RNN ulegał degradacji przez efekt zanikającego gradientu (odległe w czasie kroki przestawały wpływać na uczenie). LSTM i GRU dzięki bramkom z powodzeniem tworzyły ścieżki przepływu dla gradientu i utrzymywały niską stratę.
 
 ## 5. Wnioski
 
-Podsumowanie i ewentualne kierunki poprawy.
+1. Większa liczba jednostek nie zawsze poprawia wynik. Po osiągnięciu odpowiedniej pojemności modelu (np. 32 dla tego zadania), dalsze zwiększanie zwiększa jedynie koszt obliczeniowy i grozi przeuczeniem.
 
+2.  Najlepsze wyniki osiągano przy oknie długości ok. 30-60 próbek, co dawało wystarczający kontekst czasowy, by uchwycić fazę, unikając przy tym zjawiska zanikającego gradientu charakterystycznego dla bardzo długich sekwencji.
+
+3.  RNN i GRU/LSTM nie reagują tak samo na wydłużenie okna. Sieci GRU i LSTM, dzięki wewnętrznym bramkom, zdecydowanie lepiej od zwykłego RNN radzą sobie z dalekimi zależnościami w czasie (np. okno 120).
+
+4.  Wytrenowane modele (szczególnie LSTM i GRU z oknem 30) były wyraźnie lepsze od prostej heurystyki "ostatnia próbka" (test MSE rzędu ~0.0035 w stosunku do ~0.0063 heurystyki).
+
+5.  Podczas uczenia, z uwagi na relatywnie mały zbiór testowy, można było zaobserwować poszarpania (niewielką niestabilność) krzywej straty testowej pomiędzy epokami.
+
+Postawione hipotezy potwierdziły się – bramkowanie faktycznie chroni przed długimi oknami, a powiększanie warstw ma sens tylko do pewnego granicznego poziomu.
 ---
 
 ## Kryteria oceny (rubryka)
