@@ -38,6 +38,7 @@ Na wykresie widać przeuczenie. Zbiór treningowy po około 25-30 epokach utrzym
 
 
 ![alt text](2.png)
+
 3.
 
 | okno | ziarno | val MSE | MAE 1-krok | MAE 14-krok |
