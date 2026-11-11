@@ -21,14 +21,15 @@ Sprawdzenie, jak na jakość predykcji wpływają długość sekwencji, rozmiar 
 
 ## 3. Wyniki
 
-Model,Test MSE (L=50),Czas (L=50),Test MSE (L=100),Czas (L=100),Params
-Baseline (Predykcja stała),0.1598,-,0.1667,-,0
-SimpleRNN (h=32),0.1598,7.9s,0.1703,14.8s,1 185
-LSTM (h=32),0.1597,17.6s,0.1667,31.8s,4 641
-GRU (h=32),0.1439,26.4s,0.1663,40.8s,3 489
-"Conv1D (d=[1,2,4])",0.0312,34.9s,0.1643,62.1s,25 217
-SimpleRNN (h=64),-,-,0.1673,22.0s,4 417
-"Conv1D (d=[1,1,1])",-,-,0.1641,55.4s,25 217
+| Model | Test MSE (L=50) | Czas (L=50) | Test MSE (L=100) | Czas (L=100) | Params |
+|---|---|---|---|---|---|
+| **Baseline (Predykcja stała)** | 0.1598 | - | 0.1667 | - | 0 |
+| **SimpleRNN (h=32)** | 0.1598 | 7.9s | 0.1703 | 14.8s | 1 185 |
+| **LSTM (h=32)** | 0.1597 | 17.6s | 0.1667 | 31.8s | 4 641 |
+| **GRU (h=32)** | 0.1439 | 26.4s | 0.1663 | 40.8s | 3 489 |
+| **Conv1D (d=[1,2,4])** | 0.0312 | 34.9s | 0.1643 | 62.1s | 25 217 |
+| **SimpleRNN (h=64)** | - | - | 0.1673 | 22.0s | 4 417 |
+| **Conv1D (d=[1,1,1])** | - | - | 0.1641 | 55.4s | 25 217 |
 
 ![alt text](1.png)
 
