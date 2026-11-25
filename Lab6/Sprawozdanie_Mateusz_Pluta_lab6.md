@@ -40,11 +40,11 @@ https://github.com/mattty1/Speech-Recognition.git
 | 80 | 618025 | 77183 | 77184 |
 | 160 | 617945 | 77103 | 77104 |
 
-![alt text](wykres_sekw-1.png)
+![alt text](wykres_sekw.png)
 
-![alt text](wykres_znaki-1.png)
+![alt text](wykres_znaki.png)
 
-![alt text](wykres_slowa-1.png)
+![alt text](wykres_slowa.png)
 
 ## 4. Analiza i interpretacja
 
